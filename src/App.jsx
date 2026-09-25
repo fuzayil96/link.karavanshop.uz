@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaPhoneAlt,
 } from "react-icons/fa";
-import { FiPhone, FiChevronRight, FiMapPin } from "react-icons/fi";
+import {  FiChevronRight, FiMapPin } from "react-icons/fi";
 
 // 1. Top Gallery Component
 const TopGallery = () => {
@@ -97,7 +97,13 @@ const ActionMenu = () => {
       <button className={btnClass}>
         <FaPhoneAlt size={18} className="absolute left-6" />
         <span className="w-full text-center font-medium cursor-pointer">
-          +998 91 421 99 99
+          <a href="tel:+998904639999">+998 90 463 99 99</a>
+        </span>
+      </button>
+      <button className={btnClass}>
+        <FaPhoneAlt size={18} className="absolute left-6" />
+        <span className="w-full text-center font-medium cursor-pointer">
+          <a href="tel:+998904629999">+998 90 462 99 99</a>
         </span>
       </button>
       <button className={btnClass}>
