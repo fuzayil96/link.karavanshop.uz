@@ -5,9 +5,10 @@ import {
   FaInstagram,
   FaTelegramPlane,
   FaWhatsapp,
+  FaYoutube,
   FaPhoneAlt,
 } from "react-icons/fa";
-import {  FiChevronRight, FiMapPin } from "react-icons/fi";
+import { FiChevronRight, FiMapPin } from "react-icons/fi";
 
 // 1. Top Gallery Component
 const TopGallery = () => {
@@ -47,7 +48,9 @@ const ProfileHeader = () => {
         alt="DenTex Profile"
         className="w-20 h-20 rounded-full object-cover border-4 border-slate-200"
       />
-      <h1 className="text-5xl font-bold mt-2 font-serif tracking-widest  text-slate-900">KARAVAN</h1>
+      <h1 className="text-5xl font-bold mt-2 font-serif tracking-widest  text-slate-900">
+        KARAVAN
+      </h1>
       <p className="text-xl text-slate-600 font-medium">
         Siz va Oilangiz uchun!
       </p>
@@ -59,29 +62,29 @@ const ProfileHeader = () => {
 const SocialLinks = () => {
   return (
     <div className="flex justify-center gap-4 my-6">
-      <a
+      {/* <a
         href="#"
         className="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded-xl"
       >
         <FaFacebook size={20} />
-      </a>
+      </a> */}
       <a
-        href="#"
+        href="https://www.instagram.com/karavan.sam?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
         className="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded-xl"
       >
         <FaInstagram size={20} />
       </a>
       <a
-        href="#"
+        href="https://t.me/karavansam"
         className="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded-xl"
       >
         <FaTelegramPlane size={20} />
       </a>
       <a
-        href="#"
+        href="https://www.youtube.com/@Karavansam"
         className="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded-xl"
       >
-        <FaWhatsapp size={20} />
+        <FaYoutube size={20} />
       </a>
     </div>
   );
@@ -149,7 +152,7 @@ const NewsletterForm = () => {
         </button>
       </div>
 
-      <div className="w-2/3 h-px bg-slate-300 mt-10"></div>
+      {/* <div className="w-2/3 h-px bg-slate-300 mt-10"></div> */}
     </div>
   );
 };
@@ -158,31 +161,28 @@ const NewsletterForm = () => {
 const StoreLocations = () => {
   return (
     <div className="w-full px-6 pb-12 flex flex-col">
-      <h3 className="font-bold text-lg mb-4 text-center text-slate-900">
+      {/* <h3 className="font-bold text-lg mb-4 text-center text-slate-900">
         Our stores
-      </h3>
+      </h3> */}
 
-      <div className="w-full h-40 bg-slate-200 mb-6 rounded">
+      {/* <div className="w-full h-40 bg-slate-200 mb-6 rounded">
         <img
           src="https://via.placeholder.com/400x200?text=Map+Image"
           alt="Stores Map"
           className="w-full h-full object-cover rounded"
         />
-      </div>
+      </div> */}
 
       <div className="flex flex-col gap-4">
         <div className="flex items-start gap-3">
           <FiMapPin size={20} className="text-slate-800 mt-0.5 flex-shrink-0" />
           <p className="text-sm text-slate-800">
-            Almaty, Rozybakiyev st 263, 2 floor
+            <a href="https://yandex.uz/maps/-/CXQ5iBKX">
+              Samarqand, Rudakiy koʻchasi, 97
+            </a>
           </p>
         </div>
-        <div className="flex items-start gap-3">
-          <FiMapPin size={20} className="text-slate-800 mt-0.5 flex-shrink-0" />
-          <p className="text-sm text-slate-800">
-            Almaty, Baurzhan Momysh-uly st 8A, 2 floor
-          </p>
-        </div>
+       
       </div>
     </div>
   );
