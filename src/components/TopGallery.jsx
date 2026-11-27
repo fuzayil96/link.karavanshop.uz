@@ -1,93 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 const images = [
   "https://avatars.mds.yandex.net/get-altay/11018317/2a0000018c7bf97a0a33c614d5849c502dcd/XXXL",
   "https://avatars.mds.yandex.net/get-altay/10637974/2a0000018c7c68ea84ead85e07b82368d763/XXXL",
-  "https://avatars.mds.yandex.net/get-altay/17043127/2a0000019b267b1e1e38c1da17a879f34924/XXXL"
+  "https://avatars.mds.yandex.net/get-altay/17043127/2a0000019b267b1e1e38c1da17a879f34924/XXXL",
 ];
 
+const INTERVAL = 4000;
+
 const TopGallery = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [current, setCurrent] = useState(0);
+  const touchX = useRef(null);
 
-  // Avtomatik aylantirish uchun useEffect
+  // Avtomatik aylantirish (qo'lda almashtirilganda taymer qayta boshlanadi)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // 3 soniyada bir almashadi (3000 = 3 sek)
+    const timer = setTimeout(
+      () => setCurrent((i) => (i + 1) % images.length),
+      INTERVAL
+    );
+    return () => clearTimeout(timer);
+  }, [current]);
 
-    return () => clearInterval(timer); // Komponent o'chganda taymerni tozalash
-  }, []);
+  const go = (dir) =>
+    setCurrent((i) => (i + dir + images.length) % images.length);
+
+  const onTouchStart = (e) => (touchX.current = e.touches[0].clientX);
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const diff = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(diff) > 40) go(diff < 0 ? 1 : -1);
+    touchX.current = null;
+  };
 
   return (
-    // h-screen to'liq ekran balandligini, w-full to'liq kenglikni oladi
-    <div className="relative w-full h-48 overflow-hidden bg-black">
-      
-      {/* Rasmlar qatori */}
-      <div 
-        className="flex w-full h-full transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {images.map((src, index) => (
-          <div key={index} className="w-full h-full flex-shrink-0">
-            <img
-              src={src}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
+    <div
+      className="relative h-60 w-full overflow-hidden rounded-[28px] bg-slate-900 shadow-xl shadow-green-950/15"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      {images.map((src, index) => (
+        <img
+          key={src}
+          src={src}
+          alt={`Karavan do'koni — rasm ${index + 1}`}
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-out ${
+            current === index ? "scale-100 opacity-100" : "scale-105 opacity-0"
+          }`}
+        />
+      ))}
 
-      {/* Pastki navigatsiya nuqtalari (Dots) */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-3">
+      {/* Gradient qatlam */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/0 to-black/10" />
+
+      {/* Nuqtalar */}
+      <div className="absolute right-4 bottom-4 flex items-center gap-1.5 rounded-full bg-black/25 px-2.5 py-2 backdrop-blur-md">
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentIndex === index ? "bg-white w-6" : "bg-white/50"
+            onClick={() => setCurrent(index)}
+            className={`h-1.5 cursor-pointer rounded-full transition-all duration-500 ${
+              current === index ? "w-5 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`${index + 1}-rasmga o'tish`}
           />
         ))}
       </div>
-
     </div>
   );
 };
 
 export default TopGallery;
-
-
-
-
-// // 1. Top Gallery Component
-// const TopGallery = () => {
-//   return (
-//     <div className="w-full flex h-48 bg-white overflow-hidden">
-//       <div className="w-1/3 border-r">
-//         <img
-//           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRijFWnaEROhzhUrzFrTJf7Z6wUtV3m4-Y2BDN4EohOYo7OYmsnjble0Z5v&s=10"
-//           alt="Jacket"
-//           className="w-full h-full object-cover"
-//         />
-//       </div>
-//       <div className="w-1/3  border-r">
-//         <img
-//           src="https://d38b044pevnwc9.cloudfront.net/cutout-nuxt/enhancer/2.jpg"
-//           alt="Jacket"
-//           className="w-full h-full object-cover"
-//         />
-//       </div>
-//       <div className="w-1/3">
-//         <img
-//           src="https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp"
-//           alt="Jacket"
-//           className="w-full h-full object-cover"
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TopGallery

@@ -1,10 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="uz">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>link.karavanshop.uz</title>
+    <meta name="theme-color" content="#f5f5f4" />
+    <meta name="description" content="KARAVAN — Siz va Oilangiz uchun! Telefon raqamlar, Telegram operatorlar va do'konlarimiz manzillari." />
+    <title>KARAVAN — Siz va Oilangiz uchun!</title>
+    <script>
+      // Sahifa yuklanishidan oldin mavzuni qo'llash (miltillashning oldini olish)
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0c0a09");
+        }
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

@@ -1,22 +1,24 @@
-// 2. Profile Header Component
+import logo from "../assets/logo.jpg";
 
-import logo from "../assets/logo.jpg"
 const ProfileHeader = () => {
   return (
-    <div className="flex flex-col items-center -mt-10 z-10 relative">
-      <img
-        src={logo}
-        alt="DenTex Profile"
-        className="w-20 h-20 rounded-full object-cover border-4 border-slate-200"
-      />
-      <h1 className="text-5xl font-bold mt-2 font-serif tracking-widest  text-slate-900">
+    <div className="relative z-10 -mt-12 flex flex-col items-center text-center">
+      <div className="rounded-full bg-linear-to-br from-green-800 via-green-600 to-emerald-300 p-1 shadow-lg shadow-green-900/25">
+        <img
+          src={logo}
+          alt="KARAVAN logotipi"
+          className="h-24 w-24 rounded-full object-cover ring-4 ring-stone-100 dark:ring-stone-950"
+        />
+      </div>
+
+      <h1 className="mt-4 font-display text-4xl font-semibold tracking-[0.18em] text-green-950 dark:text-green-100">
         KARAVAN
       </h1>
-      <p className="text-xl text-slate-600 font-medium">
+      <p className="mt-1.5 text-base font-medium text-slate-500 dark:text-stone-400">
         Siz va Oilangiz uchun!
       </p>
     </div>
   );
 };
 
-export default ProfileHeader
+export default ProfileHeader;
